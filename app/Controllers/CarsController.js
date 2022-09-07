@@ -47,7 +47,7 @@ export class CarsController {
       let formData = getFormData(form)
 
       carsService.addCar(formData)
-      
+
       // @ts-ignore
       form.reset()
 
