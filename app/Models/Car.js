@@ -13,7 +13,7 @@ export class Car {
     this.year = data.year
     this.price = data.price
     this.description = data.description
-    this.imgUrl = data.imgUrl
+    this.imgUrl = data.imgUrl || 'https://www.autolist.com/assets/listings/default_car.jpg'
   }
 
 
