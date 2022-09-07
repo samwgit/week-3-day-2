@@ -1,5 +1,6 @@
 import { appState } from "../AppState.js"
-import { Car } from "../Models/Car.js"
+import { carsService } from "../Services/CarsService.js"
+import { getFormData } from "../Utils/FormHandler.js"
 import { setHTML } from "../Utils/Writer.js"
 
 function drawCars() {
@@ -24,15 +25,37 @@ export class CarsController {
   }
 
 
-  test() {
-    // NOTE NEVER DO THIS TESTING ONLY
+  // test() {
+  //   // NOTE NEVER DO THIS TESTING ONLY
 
-    let testCar = new Car({ make: 'Test', model: 'Car', imgUrl: 'https://conti-engineering.com/wp-content/uploads/2020/05/VirtualVehicleTest_Beitrag.jpg', year: 2000, price: 2000, description: 'test only' })
+  //   let testCar = new Car({ make: 'Test', model: 'Car', imgUrl: 'https://conti-engineering.com/wp-content/uploads/2020/05/VirtualVehicleTest_Beitrag.jpg', year: 2000, price: 2000, description: 'test only' })
 
-    // NEVER manipulate data directly from a controller its a big NO NO
-    appState.cars = [testCar, ...appState.cars]
+  //   // NEVER manipulate data directly from a controller its a big NO NO
+  //   appState.cars = [testCar, ...appState.cars]
 
+  // }
+
+
+  addCar() {
+    try {
+      // REVIEW FORM SUBMISSION EXAMPLE 
+      // THE THREE THINGS WE DO WITH EVERY FORM SUBMISSION!!!!
+      // @ts-ignore
+      window.event.preventDefault()
+      // @ts-ignore
+      const form = window.event.target
+      let formData = getFormData(form)
+
+      carsService.addCar(formData)
+      
+      // @ts-ignore
+      form.reset()
+
+    } catch (error) {
+      console.error('addCar', error)
+    }
   }
+
 
 
 }
